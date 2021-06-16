@@ -7,6 +7,7 @@ const routes = require('./routes/index')
 
 const app = express()
 const port = process.env.PORT || 3000
+require('./config/mongoose')
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main', extname: '.handlebars' }))
 app.set('view engine', 'handlebars')

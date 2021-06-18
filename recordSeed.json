@@ -1,0 +1,34 @@
+{
+  "recordSeed": [
+    {
+      "name": "午餐",
+      "date": "2021-06-17",
+      "amount": 260,
+      "category": "餐飲食品"
+    },
+    {
+      "name": "買PS5",
+      "date": "2021-06-15",
+      "amount": 15000,
+      "category": "休閒娛樂"
+    },
+    {
+      "name": "搭客運",
+      "date": "2021-06-13",
+      "amount": 160,
+      "category": "交通出行"
+    },
+    {
+      "name": "買口罩",
+      "date": "2021-06-05",
+      "amount": 500,
+      "category": "家居物業"
+    },
+    {
+      "name": "剪頭髮",
+      "date": "2021-06-01",
+      "amount": 399,
+      "category": "其他"
+    }
+  ]
+}

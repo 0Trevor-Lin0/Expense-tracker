@@ -1,1 +1,24 @@
-<h1>hello bitches</h1>
+{{!-- 如果螢幕變成手機太小是否會擠再一起要考慮進去 --}}
+<div class="list-group">
+  {{#each records}}
+  <div class="d-flex">
+    <a href="#" class="list-group-item list-group-item-action d-flex">
+      <div class="">
+        <i class="fas fa-home"></i>
+      </div>
+      <div class="d-flex flex-column">
+        <div>{{this.name}}</div>
+        <div>{{this.date}}</div>
+      </div>
+      <div>{{this.amount}}</div>
+    </a>
+    <div class="ms-2">
+      <a href="" type="button" class="btn btn-primary">修改</a>
+    </div>
+    <div class="ms-2">
+      <a href="" type="button" class="btn btn-primary">刪除</a>
+    </div>
+  </div>
+  {{/each}}
+
+</div>

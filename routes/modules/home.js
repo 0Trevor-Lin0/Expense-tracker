@@ -2,10 +2,10 @@ const express = require('express')
 const router = express.Router()
 const Category = require('../../models/category')
 const Record = require('../../models/record')
-let totalAmount = 0
 
 router.get('/', (req, res) => {
-  Record.find()
+  let totalAmount = 0
+  return Record.find()
     .lean()
     .sort('_id')
     .then(records => {

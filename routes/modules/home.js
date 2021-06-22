@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
             record.date = record.date.toDateString() // 改變取出date呈現方式
             totalAmount += record.amount
           })
-          res.render('index', { records, totalAmount })
+          res.render('index', { records, totalAmount, categories })
         })
     })
 

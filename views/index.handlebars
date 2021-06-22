@@ -42,7 +42,8 @@
       <form action="/records" method="POST" class="row g-3 needs-validation" novalidate>
         <div class="col-12">
           <label for="name" class="form-label">名稱</label>
-          <input type="text" class="form-control" id="name" name="name" placeholder="花費名稱" required>
+          <input type="text" class="form-control" id="name" name="name" placeholder="花費名稱"
+            onkeyup="this.value=this.value.replace(/\s+/g,'')" required autofocus>
           <div class="valid-feedback">
             ok！
           </div>
@@ -64,11 +65,9 @@
           <label for="category" class="form-label">類別</label>
           <select class="form-select" id="category" name="category" required>
             <option selected disabled value="">Choose...</option>
-            <option value="家居物業">家居物業</option>
-            <option value="交通出行">交通出行</option>
-            <option value="休閒娛樂">休閒娛樂</option>
-            <option value="餐飲食品">餐飲食品</option>
-            <option value="其他">其他</option>
+            {{#each categories}}
+            <option value="{{this.name}}">{{this.name}}</option>
+            {{/each}}
           </select>
           <div class="valid-feedback">
             ok!
@@ -89,6 +88,7 @@
         </div>
         <div class="col-12">
           <button class="btn btn-primary" type="submit">新增花費</button>
+          <a href="/" type="button" class="btn btn-primary">返回</a>
         </div>
       </form>
     </div>

@@ -1,0 +1,77 @@
+<div class="p-5">
+  <form action="" method="POST" class="row g-3 p-5 needs-validation" novalidate>
+    <div class="col-12">
+      <label for="name" class="form-label">名稱</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="花費名稱" value="{{record.name}}" required>
+      <div class="valid-feedback">
+        ok！
+      </div>
+      <div class="invalid-feedback">
+        請為這必花費取個名子！
+      </div>
+    </div>
+    <div class="col-12">
+      <label for="date" class="form-label">日期</label>
+      <input type="date" class="form-control" id="date" name="date" value="{{ record.date }}" required>
+      <div class="valid-feedback">
+        ok!
+      </div>
+      <div class="invalid-feedback">
+        請選擇花費的日期！
+      </div>
+    </div>
+    <div class="col-12">
+      <label for="category" class="form-label">類別</label>
+      <select class="form-select" id="category" name="category" required>
+        <option disabled value="">Choose...</option>
+        {{#each categories}}
+        <option value="{{this.name}}" {{#if this.match}}selected{{/if}}>{{this.name}}
+        </option>
+        {{/each}}
+      </select>
+      <div class="valid-feedback">
+        ok!
+      </div>
+      <div class="invalid-feedback">
+        請選擇一個類別！
+      </div>
+    </div>
+    <div class="col-12">
+      <label for="amount" class="form-label">金額</label>
+      <input type="number" class="form-control" id="amount" placeholder="輸入金額" name="amount" value="{{record.amount}}"
+        required>
+      <div class="valid-feedback">
+        ok！
+      </div>
+      <div class="invalid-feedback">
+        請輸入金額！
+      </div>
+    </div>
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">新增花費</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function () {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll('.needs-validation')
+
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
+</script>

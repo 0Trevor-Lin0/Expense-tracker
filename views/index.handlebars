@@ -26,7 +26,9 @@
       <a href="/records/{{this._id}}" type="button" class="btn btn-primary">修改</a>
     </div>
     <div class="ms-2">
-      <a href="" type="button" class="btn btn-primary">刪除</a>
+      <form action="/records/{{this._id}}?_method=DELETE" method="POST">
+        <button class="btn btn-dark" type='submit'>刪除</button>
+      </form>
     </div>
   </div>
   {{/each}}

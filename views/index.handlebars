@@ -1,4 +1,15 @@
 {{!-- 如果螢幕變成手機太小是否會擠再一起要考慮進去 --}}
+<form action="/filter" method="POST">
+  <label for="category" class="form-label">篩選類別</label>
+  <a href="/"><i class="fas fa-home"></i></a>
+  <select class="form-select" id="category" name="category" onchange="submit()">
+    <option selected disabled value="">Choose...</option>
+    {{#each categories}}
+    <option value="{{this.name}}">{{this.name}}</option>
+    {{/each}}
+  </select>
+</form>
+
 <div>
   <!-- Button trigger modal -->
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createData">

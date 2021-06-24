@@ -13,6 +13,8 @@
 
 ## Home page
 
+![image](https://github.com/0Trevor-Lin0/Expense-tracker/blob/main/public/img/Expense-tracker%20A12.png)
+
 ## Installation
 
 1. Clone repository to your local computer

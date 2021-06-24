@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+body {
+  font-family: 'Righteous', cursive, sans-serif;
+  background-color: #e0ffe9;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+label {
+  font-size: 1.2em;
+}
+
+.position-father {
+  position: relative;
+}
+
+.jump-box {
+  position: absolute;
+  z-index: 2;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  background: #c0fa64;
+  animation: box 0.7s infinite;
+}
+@keyframes box {
+  0% {
+    top: -10px;
+  }
+  20% {
+    border-radius: 10px; 
+  }
+  50% {
+    top: 10px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+  }
+  80% {
+    border-radius: 10px; 
+  }
+  100% {
+    top: -10px;
+  }
+}

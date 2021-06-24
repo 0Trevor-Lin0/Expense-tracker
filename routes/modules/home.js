@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
         .lean()
         .then(categories => {
           records.forEach(record => {
-            categories.find(category => {
+            categories.forEach(category => {
               if (record.category === category.name) {
                 record.icon = category.icon
               }
@@ -39,7 +39,7 @@ router.post('/filter', (req, res) => {
         .lean()
         .then(categories => {
           records.forEach(record => {
-            categories.find(category => {
+            categories.forEach(category => {
               if (record.category === category.name) {
                 record.icon = category.icon
               }

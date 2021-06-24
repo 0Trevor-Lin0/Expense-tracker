@@ -8,9 +8,11 @@ const app = express()
 const port = process.env.PORT || 3000
 require('./config/mongoose')
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main', extname: '.handlebars' }))
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
+// setting static files
+app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 // 設定 methodOverride 進行前置處理
 app.use(methodOverride('_method'))

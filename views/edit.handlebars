@@ -1,7 +1,8 @@
-<div class="p-5">
-  <form action="/records/{{record._id}}?_method=PUT" method="POST" class="row g-3 p-5 needs-validation" novalidate>
+<div class="">
+  <form action="/records/{{record._id}}?_method=PUT" method="POST"
+    class="row g-3 p-3 needs-validation w-50 mx-auto text-start" novalidate>
     <div class="col-12">
-      <label for="name" class="form-label">名稱</label>
+      <label for="name" class="form-label">名稱：</label>
       <input type="text" class="form-control" id="name" name="name" placeholder="花費名稱" value="{{record.name}}"
         onkeyup="this.value=this.value.replace(/\s+/g,'')" required>
       <div class="valid-feedback">
@@ -12,7 +13,7 @@
       </div>
     </div>
     <div class="col-12">
-      <label for="date" class="form-label">日期</label>
+      <label for="date" class="form-label">日期：</label>
       <input type="date" class="form-control" id="date" name="date" value="{{ record.date }}" required>
       <div class="valid-feedback">
         ok!
@@ -22,7 +23,7 @@
       </div>
     </div>
     <div class="col-12">
-      <label for="category" class="form-label">類別</label>
+      <label for="category" class="form-label">類別：</label>
       <select class="form-select" id="category" name="category" required>
         <option disabled value="">Choose...</option>
         {{#each categories}}
@@ -38,7 +39,7 @@
       </div>
     </div>
     <div class="col-12">
-      <label for="amount" class="form-label">金額</label>
+      <label for="amount" class="form-label">金額：</label>
       <input type="number" class="form-control" id="amount" placeholder="輸入金額" name="amount" value="{{record.amount}}"
         required>
       <div class="valid-feedback">
@@ -48,9 +49,9 @@
         請輸入金額！
       </div>
     </div>
-    <div class="col-12">
-      <button class="btn btn-primary" type="submit">儲存</button>
-      <a href="/" type="button" class="btn btn-primary">返回</a>
+    <div class="col-12 d-flex justify-content-between">
+      <button class="btn btn-outline-dark" type="submit">儲存</button>
+      <a href="/" type="button" class="btn btn-outline-dark">返回</a>
     </div>
   </form>
 </div>

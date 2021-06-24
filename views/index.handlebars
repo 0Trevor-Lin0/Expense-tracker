@@ -1,8 +1,8 @@
 {{!-- 如果螢幕變成手機太小是否會擠再一起要考慮進去 --}}
-<form action="/filter" method="POST">
-  <label for="category" class="form-label">篩選類別</label>
-  <a href="/"><i class="fas fa-home"></i></a>
-  <select class="form-select" id="category" name="category" onchange="submit()">
+<form action="/filter" method="POST" class="mb-2">
+  <label for="category" class="form-label fs-4">篩選類別</label>
+  <a href="/"><i class="fas fa-home text-white bg-dark rounded-circle"></i></a>
+  <select class="form-select w-25 mx-auto" id="category" name="category" onchange="submit()">
     <option selected disabled value="">Choose...</option>
     {{#each categories}}
     <option value="{{this.name}}">{{this.name}}</option>
@@ -12,35 +12,41 @@
 
 <div>
   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createData">
+  <button type="button" class="btn btn-outline-dark font-bold" data-bs-toggle="modal" data-bs-target="#createData">
     新增花費
   </button>
 </div>
-<div class="d-flex">
-  <p>總金額:</p>
-  <h1>{{totalAmount}}</h1>
+<div class="d-flex justify-content-center">
+  <div class="position-father">
+    <p class="d-inline-block align-top me-5 fs-5">總金額:</p>
+    <h1 class="d-inline-block jump-box p-2">{{totalAmount}}</h1>
+  </div>
 </div>
-<div class="list-group">
+<div class="list-group mt-5">
   {{#each records}}
-  <div class="d-flex">
-    <a href="/records/{{this._id}}" class="list-group-item list-group-item-action d-flex">
-      <div class="">
-        <i class="{{this.icon}}"></i>
-      </div>
-      <div class="d-flex flex-column">
-        <div>{{this.name}}</div>
-        <div>{{this.date}}</div>
-      </div>
-      <div>{{this.amount}}</div>
-    </a>
-    <div class="ms-2">
-      <a href="/records/{{this._id}}" type="button" class="btn btn-primary">修改</a>
+  <div class="row d-flex w-50 mx-auto mb-2">
+    <div class="col-md-10 my-auto">
+      <a href="/records/{{this._id}}" class="row d-flex list-group-item list-group-item-action rounded me-2">
+        <div class="col-12 col-md-4 my-auto">
+          <i class="{{this.icon}} fs-4" title="{{this.category}}"></i>
+        </div>
+        <div class="d-flex flex-column col-12 col-md-4">
+          <div class="fs-5">{{this.name}}</div>
+          <div class=""><small>{{this.date}}</small></div>
+        </div>
+        <div class="my-auto fs-4 col-12 col-md-4">{{this.amount}}元</div>
+      </a>
     </div>
-    <div class="ms-2">
-      <form action="/records/{{this._id}}?_method=DELETE" method="POST">
-        <button class="btn btn-dark" type='submit'>刪除</button>
+
+
+    <div class="col-md-2 d-flex justify-content-evenly mt-2 pe-4">
+      <a href="/records/{{this._id}}" type="button" class="btn btn-outline-dark d-block my-auto me-2 ms-2">修改</a>
+      <form action="/records/{{this._id}}?_method=DELETE" method="POST" class="d-block my-auto me-2">
+        <button class="btn btn-outline-danger border-dark" type='submit'
+          onclick="return(confirm('確認要刪除嗎？'))">刪除</button>
       </form>
     </div>
+
   </div>
   {{/each}}
 
@@ -52,9 +58,9 @@
   aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content p-3">
-      <form action="/records" method="POST" class="row g-3 needs-validation" novalidate>
+      <form action="/records" method="POST" class="row g-3 needs-validation text-start" novalidate>
         <div class="col-12">
-          <label for="name" class="form-label">名稱</label>
+          <label for="name" class="form-label">名稱：</label>
           <input type="text" class="form-control" id="name" name="name" placeholder="花費名稱"
             onkeyup="this.value=this.value.replace(/\s+/g,'')" required autofocus>
           <div class="valid-feedback">
@@ -65,7 +71,7 @@
           </div>
         </div>
         <div class="col-12">
-          <label for="date" class="form-label">日期</label>
+          <label for="date" class="form-label">日期：</label>
           <input type="date" class="form-control" id="date" name="date" required>
           <div class="valid-feedback">
             ok!
@@ -75,7 +81,7 @@
           </div>
         </div>
         <div class="col-12">
-          <label for="category" class="form-label">類別</label>
+          <label for="category" class="form-label">類別：</label>
           <select class="form-select" id="category" name="category" required>
             <option selected disabled value="">Choose...</option>
             {{#each categories}}
@@ -90,7 +96,7 @@
           </div>
         </div>
         <div class="col-12">
-          <label for="amount" class="form-label">金額</label>
+          <label for="amount" class="form-label">金額：</label>
           <input type="number" class="form-control" id="amount" placeholder="輸入金額" name="amount" required>
           <div class="valid-feedback">
             ok！
@@ -99,9 +105,9 @@
             請輸入金額！
           </div>
         </div>
-        <div class="col-12">
-          <button class="btn btn-primary" type="submit">新增花費</button>
-          <a href="/" type="button" class="btn btn-primary">返回</a>
+        <div class="col-12 d-flex justify-content-between">
+          <button class="btn btn-outline-dark" type="submit">新增花費</button>
+          <a href="/" type="button" class="btn btn-outline-dark">返回</a>
         </div>
       </form>
     </div>

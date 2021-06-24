@@ -1,8 +1,8 @@
 {
   "name": "expense-tracker",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "consumption record",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",

@@ -31,7 +31,6 @@ router.get('/', (req, res) => {
 router.post('/filter', (req, res) => {
   let totalAmount = 0
   const category = req.body.category
-  console.log(category)
   return Record.aggregate([{ $match: { category: category } }])
     .sort('-date')
     .then(records => {

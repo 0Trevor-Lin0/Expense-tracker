@@ -2,10 +2,9 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
 const routes = require('./routes/index')
-// 建立mongoose 與 mongodb連結
-
 const app = express()
 const port = process.env.PORT || 3000
+// 建立mongoose 與 mongodb連結
 require('./config/mongoose')
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))

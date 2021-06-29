@@ -39,23 +39,17 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   const id = req.params.id
-  const { name, date, category, amount } = req.body
-  let newId = ''
   return Category.find()
     .lean()
     .then(categories => {
       categories.forEach(category => {
         if (category.name === req.body.category) {
-          newId = String(category._id)
+          req.body.categoryId = String(category._id)
         }
       })
       Record.findById(id)
         .then(record => {
-          record.name = name
-          record.date = date
-          record.category = category
-          record.amount = amount
-          record.categoryId = newId
+          record = Object.assign(record, req.body)
           return record.save()
         })
         .then(() => res.redirect('/'))

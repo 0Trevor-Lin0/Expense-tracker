@@ -16,6 +16,10 @@ const recordSchema = new Schema({
   category: {
     type: String,
     require: true
+  },
+  categoryId: {
+    type: String,
+    require: true
   }
 })
 

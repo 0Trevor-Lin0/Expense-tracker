@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
         .then(categories => {
           records.forEach(record => {
             categories.forEach(category => {
-              if (record.category === category.name) {
+              if (record.categoryId === String(category._id)) {
                 record.icon = category.icon
               }
             })
@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
 router.post('/filter', (req, res) => {
   let totalAmount = 0
   const category = req.body.category
-  return Record.aggregate([{ $match: { category: category } }])
+  return Record.aggregate([{ $match: { categoryId: category } }])
     .sort('-date')
     .then(records => {
       Category.find()
@@ -39,7 +39,7 @@ router.post('/filter', (req, res) => {
         .then(categories => {
           records.forEach(record => {
             categories.forEach(category => {
-              if (record.category === category.name) {
+              if (record.categoryId === String(category._id)) {
                 record.icon = category.icon
               }
             })

@@ -1,14 +1,27 @@
 const db = require('../../config/mongoose') // 建立種子前要取得資料庫連線
 const Record = require('../record')
+const Category = require('../category')
 const { recordSeed } = require('../../recordSeed.json')
 
 db.once('open', () => {
   console.log('mongodb connected!')
-  Record.create(recordSeed)
-    .then(() => {
-      console.log('create done')
-      return db.close()
-    }).then(() => {
-      console.log('database connection close...')
+  Category.find()
+    .lean()
+    .then(categories => {
+      recordSeed.forEach(item => {
+        categories.forEach(category => {
+          if (item.category === category.name) {
+            item.categoryId = String(category._id)
+          }
+        })
+      })
+      console.log(recordSeed)
+      Record.create(recordSeed)
+        .then(() => {
+          console.log('create done')
+          return db.close()
+        }).then(() => {
+          console.log('database connection close...')
+        })
     })
 })

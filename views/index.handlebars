@@ -5,7 +5,7 @@
   <select class="form-select w-25 mx-auto" id="category" name="category" onchange="submit()">
     <option selected disabled value="">Choose...</option>
     {{#each categories}}
-    <option value="{{this.name}}">{{this.name}}</option>
+    <option value="{{this._id}}">{{this.name}}</option>
     {{/each}}
   </select>
 </form>

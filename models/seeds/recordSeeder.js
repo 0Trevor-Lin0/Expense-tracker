@@ -15,7 +15,6 @@ db.once('open', () => {
           }
         })
       })
-      console.log(recordSeed)
       Record.create(recordSeed)
         .then(() => {
           console.log('create done')

@@ -1,0 +1,74 @@
+<div class="card w-75 mx-auto">
+  <div class="card-body">
+    <h1 class="mb-2">Register</h1>
+    <form action="/users/register" method="POST" class="row g-3 text-start needs-validation" novalidate>
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" name="name" id="floatingName" placeholder="Enter your name" value="{{name}}" maxlength="10" minlength="1" onkeyup="this.value=this.value.replace(/\s+/g,'')" required>
+        <label for="floatingName" class="form-label">User name</label>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Choose a name
+        </div>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="email" class="form-control" name="email" id="floatingEmail" placeholder="name@example.com" value="{{email}}" onkeyup="this.value=this.value.replace(/\s+/g,'')" required>
+        <label for="floatingEmail">Email</label>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Please Enter Your Email
+        </div>
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password" value="{{password}}"  onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')" required>
+        <label for="floatingPassword">Password</label>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Please Enter Your Password
+        </div>
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" name="confirmPassword" id="floatingConfirmPassword" placeholder="Password" value="{{confirmPassword}}" required>
+        <label for="floatingConfirmPassword">Confirm Password</label>
+        <div class="invalid-feedback">
+          Please Confirm Your Password
+        </div>
+      </div>
+
+      <div class="col-12">
+        <button type="submit" class="btn btn-outline-primary font-monospace fw-bold">Register</button>
+      </div>
+    </form>
+    <p class="lead mt-2 text-start">
+      Have An Account? <a href="/users/login" class="font-monospace fw-bold">Login</a>
+    </p>
+  </div>
+</div>
+
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+      'use strict'
+
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      const forms = document.querySelectorAll('.needs-validation')
+
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+          }, false)
+        })
+    })()
+</script>

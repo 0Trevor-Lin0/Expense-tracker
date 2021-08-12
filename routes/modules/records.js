@@ -4,8 +4,9 @@ const Record = require('../../models/record')
 const Category = require('../../models/category')
 
 router.get('/:id', (req, res) => {
-  const id = req.params.id
-  return Record.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return Record.findOne({ _id, userId })
     .lean()
     .then(record => {
       Category.find()
@@ -13,7 +14,7 @@ router.get('/:id', (req, res) => {
         .then(categories => {
           record.date = record.date.toJSON().split('T')[0]
           categories.forEach(category => {
-            category.match = String(category._id) === record.categoryId
+            category.match = String(category._id) === String(record.categoryId)
           }) // 用在edit category 的option selected指定
           res.render('edit', { record, categories })
         })
@@ -22,32 +23,33 @@ router.get('/:id', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  const newData = req.body
+  req.body.userId = req.user._id
   return Category.find()
     .lean()
     .then(categories => {
       categories.forEach(category => {
-        if (category.name === newData.category) {
-          newData.categoryId = String(category._id)
+        if (category.name === req.body.category) {
+          req.body.categoryId = category._id
         }
       })
-      Record.create(newData)
+      Record.create(req.body)
         .then(() => res.redirect('/'))
         .catch(error => console.log(error))
     })
 })
 
 router.put('/:id', (req, res) => {
-  const id = req.params.id
+  const userId = req.user._id
+  const _id = req.params.id
   return Category.find()
     .lean()
     .then(categories => {
       categories.forEach(category => {
         if (category.name === req.body.category) {
-          req.body.categoryId = String(category._id)
+          req.body.categoryId = category._id
         }
       })
-      Record.findById(id)
+      Record.findOne({ _id, userId })
         .then(record => {
           record = Object.assign(record, req.body)
           return record.save()
@@ -58,8 +60,9 @@ router.put('/:id', (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
-  const id = req.params.id
-  return Record.findOneAndRemove({ _id: id })
+  const userId = req.user._id
+  const _id = req.params.id
+  return Record.findOneAndRemove({ _id, userId })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })

@@ -24,6 +24,15 @@ app.use(express.urlencoded({ extended: true }))
 // 設定 methodOverride 進行前置處理
 app.use(methodOverride('_method'))
 usePassport(app)
+
+app.use((req, res, next) => {
+  console.log('using res.local')
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
+  console.log(res.locals.isAuthenticated)
+  next()
+})
+
 app.use(routes)
 
 app.listen(port, () => {

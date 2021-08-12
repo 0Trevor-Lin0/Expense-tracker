@@ -1,6 +1,7 @@
 <div class="card w-75 mx-auto">
   <div class="card-body">
     <h1 class="mb-2">Login</h1>
+    {{> message}}
     <form action="/users/login" method="POST" class="row g-3 text-start">
       <div class="form-floating mb-3">
         <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">

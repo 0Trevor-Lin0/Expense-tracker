@@ -1,6 +1,7 @@
 <div class="card w-75 mx-auto">
   <div class="card-body">
     <h1 class="mb-2">Register</h1>
+    {{> message}}
     <form action="/users/register" method="POST" class="row g-3 text-start needs-validation" novalidate>
       <div class="form-floating mb-3">
         <input type="text" class="form-control" name="name" id="floatingName" placeholder="Enter your name" value="{{name}}" maxlength="10" minlength="1" onkeyup="this.value=this.value.replace(/\s+/g,'')" required>

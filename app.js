@@ -5,6 +5,7 @@ const routes = require('./routes/index')
 const app = express()
 const session = require('express-session')
 const usePassport = require('./config/passport')
+const flash = require('connect-flash')
 const port = process.env.PORT || 3000
 // 建立mongoose 與 mongodb連結
 require('./config/mongoose')
@@ -24,11 +25,13 @@ app.use(express.urlencoded({ extended: true }))
 // 設定 methodOverride 進行前置處理
 app.use(methodOverride('_method'))
 usePassport(app)
-
+app.use(flash())
 app.use((req, res, next) => {
   console.log('using res.local')
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user
+  res.locals.successMsg = req.flash('successMsg')
+  res.locals.warningMsg = req.flash('warningMsg')
   console.log(res.locals.isAuthenticated)
   next()
 })

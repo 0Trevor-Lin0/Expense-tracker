@@ -41,6 +41,7 @@ router.post('/register', (req, res) => {
   User.findOne({ email })
     .then(user => {
       if (user) {
+        req.flash('warningMsg', '此email已經註冊過囉！')
         return res.render('register', {
           name,
           email,

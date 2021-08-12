@@ -6,7 +6,12 @@ const app = express()
 const session = require('express-session')
 const usePassport = require('./config/passport')
 const flash = require('connect-flash')
-const port = process.env.PORT || 3000
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
+const port = process.env.PORT
 // 建立mongoose 與 mongodb連結
 require('./config/mongoose')
 
@@ -14,7 +19,7 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 app.use(session({
-  secret: 'expenseSecret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))

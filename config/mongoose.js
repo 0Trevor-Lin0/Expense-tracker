@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/Expense'
+const MONGODB_URI = process.env.MONGODB_URI
 // Make Mongoose use `findOneAndRemove()`. Note that this option is `true`
 // by default, you need to set it to false.
 mongoose.set('useFindAndModify', false)

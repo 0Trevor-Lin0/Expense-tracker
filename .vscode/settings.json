@@ -4,5 +4,8 @@
     "exphbs",
     "minlength",
     "resave"
+  ],
+  "cSpell.ignoreWords": [
+    "mongodb"
   ]
 }

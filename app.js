@@ -6,6 +6,9 @@ const app = express()
 const session = require('express-session')
 const usePassport = require('./config/passport')
 const flash = require('connect-flash')
+// Require handlebars and just-handlebars-helpers
+const Handlebars = require('handlebars')
+const H = require('just-handlebars-helpers')
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -17,6 +20,8 @@ require('./config/mongoose')
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
+
+H.registerHelpers(Handlebars)
 
 app.use(session({
   secret: process.env.SESSION_SECRET,

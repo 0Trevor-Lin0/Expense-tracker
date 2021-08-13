@@ -1,16 +1,22 @@
-{{!-- 如果螢幕變成手機太小是否會擠再一起要考慮進去 --}}
-<form action="/filter" method="POST" class="mb-2">
+{{!-- <a href="/"></a><i class="fas fa-home text-white bg-dark rounded-circle"></i></a> --}}
+<form action="/filter" method="POST" class="my-2 row">
+<div class="col-12 col-md-5">
   <label for="category" class="form-label fs-4">篩選類別</label>
-  <a href="/"><i class="fas fa-home text-white bg-dark rounded-circle"></i></a>
-  <select class="form-select w-25 mx-auto" id="category" name="categoryId" onchange="submit()">
-    <option selected disabled value="">Choose...</option>
+  <select class="form-select w-50 mx-auto" id="category" name="categoryId">
+    <option value="">Choose all...</option>
     {{#each categories}}
-    <option value="{{this._id}}">{{this.name}}</option>
+    <option value="{{this._id}}" {{#if (eq this._id categoryId)}}selected{{/if}}>{{this.name}}</option>
     {{/each}}
   </select>
+</div>
+<div class="col-12 col-md-5">
+  <label for="month" class="form-label fs-4">篩選日期</label>
+  <input class="form-select w-50 mx-auto" type="month" id="month" name="yearMonth">
+</div>
+<small class="col-12 col-md-2 align-items-center"><button type="submit" class="btn btn-primary">提交篩選</button></small>
 </form>
 
-<div>
+<div class="text-end">
   <!-- Button trigger modal -->
   <button type="button" class="btn btn-outline-dark font-bold" data-bs-toggle="modal" data-bs-target="#createData">
     新增花費
@@ -18,7 +24,7 @@
 </div>
 <div class="d-flex justify-content-center">
   <div class="position-father">
-    <p class="d-inline-block align-top me-5 fs-5">總金額:</p>
+    <p class="d-inline-block align-top me-5 fs-4 fw-bold">總金額:</p>
     <h1 class="d-inline-block jump-box p-2">{{totalAmount}}</h1>
   </div>
 </div>

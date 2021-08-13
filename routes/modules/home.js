@@ -33,10 +33,26 @@ router.get('/', (req, res) => {
 
 router.post('/filter', (req, res) => {
   const userId = req.user._id
-  const categoryId = mongoose.Types.ObjectId(req.body.categoryId)
+  // 如果未使用就給定null讓$match中的yearMonth失效
+  const categoryId = req.body.categoryId ? mongoose.Types.ObjectId(req.body.categoryId) : { $ne: '' }
+  const yearMonth = req.body.yearMonth || { $ne: '' }
   let totalAmount = 0
-  console.log('filter categoryId:', typeof categoryId)
-  return Record.aggregate([{ $match: { categoryId, userId } }])
+  console.log('filter req.body', req.body, categoryId)
+  return Record.aggregate([
+    {
+      $project: {
+        name: 1,
+        date: 1,
+        amount: 1,
+        category: 1,
+        merchant: 1,
+        categoryId: 1,
+        userId: 1,
+        yearMonth: { $dateToString: { format: '%Y-%m', date: '$date' } }
+      }
+    },
+    { $match: { categoryId, userId, yearMonth } }
+  ])
     .sort('-date')
     .then(records => {
       console.log('records filter data', records)
@@ -52,7 +68,7 @@ router.post('/filter', (req, res) => {
             record.date = record.date.toDateString() // 改變取出date呈現方式
             totalAmount += record.amount
           })
-          res.render('index', { records, totalAmount, categories })
+          res.render('index', { records, totalAmount, categories, categoryId })
         })
     })
     .catch(error => console.log(error))

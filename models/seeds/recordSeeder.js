@@ -1,26 +1,41 @@
+const bcrypt = require('bcryptjs')
+// 使得mongoose能取得.env的path
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 const db = require('../../config/mongoose') // 建立種子前要取得資料庫連線
+// 取得Schema
 const Record = require('../record')
 const Category = require('../category')
-const { recordSeed } = require('../../recordSeed.json')
+const User = require('../user')
+// 取得預設seedData
+const { recordSeed } = require('./recordSeed.json')
+const { userSeed } = require('./userSeed.json')
 
 db.once('open', () => {
   console.log('mongodb connected!')
-  Category.find()
-    .lean()
-    .then(categories => {
-      recordSeed.forEach(item => {
-        categories.forEach(category => {
-          if (item.category === category.name) {
-            item.categoryId = String(category._id)
-          }
+  const { name, email, password } = userSeed
+  bcrypt.genSalt(10)
+    .then(salt => bcrypt.hash(password, salt))
+    .then(hash => User.create({
+      name,
+      email,
+      password: hash
+    }))
+    .then(user => {
+      Category.find()
+        .lean()
+        .then(categories => {
+          return Promise.all(Array.from(recordSeed, (record, i) => {
+            const category = categories.find(category => category.name === record.category)
+            record.categoryId = category._id
+            record.userId = user._id
+          }))
         })
-      })
-      Record.create(recordSeed)
+        .then(() => Record.create(recordSeed))
         .then(() => {
           console.log('create done')
           return db.close()
-        }).then(() => {
-          console.log('database connection close...')
         })
     })
 })

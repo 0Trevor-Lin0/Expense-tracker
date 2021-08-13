@@ -4,31 +4,36 @@
       "name": "午餐",
       "date": "2021-06-17",
       "amount": 260,
-      "category": "餐飲食品"
+      "category": "餐飲食品",
+      "merchant": "阿寶早午餐"
     },
     {
       "name": "買PS5",
       "date": "2021-06-15",
       "amount": 15000,
-      "category": "休閒娛樂"
+      "category": "休閒娛樂",
+      "merchant": "dumpling娛樂器材"
     },
     {
       "name": "搭客運",
       "date": "2021-06-13",
       "amount": 160,
-      "category": "交通出行"
+      "category": "交通出行",
+      "merchant": "carrot捷運公司"
     },
     {
       "name": "買口罩",
       "date": "2021-06-05",
       "amount": 500,
-      "category": "家居物業"
+      "category": "家居物業",
+      "merchant": "banana藥局"
     },
     {
       "name": "剪頭髮",
       "date": "2021-06-01",
       "amount": 399,
-      "category": "其他"
+      "category": "其他",
+      "merchant": "apple剪髮"
     }
   ]
 }

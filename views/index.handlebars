@@ -29,10 +29,11 @@
       <a href="/records/{{this._id}}" class="row d-flex list-group-item list-group-item-action rounded me-2">
         <div class="col-12 col-md-4 my-auto">
           <i class="{{this.icon}} fs-4" title="{{this.category}}"></i>
+          <div><small>{{this.merchant}}</small></div>
         </div>
         <div class="d-flex flex-column col-12 col-md-4">
           <div class="fs-5">{{this.name}}</div>
-          <div class=""><small>{{this.date}}</small></div>
+          <div><small>{{this.date}}</small></div>
         </div>
         <div class="my-auto fs-4 col-12 col-md-4">{{this.amount}}元</div>
       </a>
@@ -61,7 +62,7 @@
       <form action="/records" method="POST" class="row g-3 needs-validation text-start" novalidate>
         <div class="col-12">
           <label for="name" class="form-label">名稱：</label>
-          <input type="text" class="form-control" id="name" name="name" placeholder="花費名稱"
+          <input type="text" class="form-control" id="name" name="name" placeholder="花費名稱" maxlength="10"
             onkeyup="this.value=this.value.replace(/\s+/g,'')" required autofocus>
           <div class="valid-feedback">
             ok！
@@ -96,8 +97,12 @@
           </div>
         </div>
         <div class="col-12">
+          <label for="merchant" class="form-label">店家：</label>
+          <input type="text" maxlength="10" class="form-control" id="merchant" placeholder="輸入店家" name="merchant">
+        </div>
+        <div class="col-12">
           <label for="amount" class="form-label">金額：</label>
-          <input type="number" class="form-control" id="amount" placeholder="輸入金額" name="amount" required>
+          <input type="number" class="form-control" id="amount" placeholder="輸入金額" max="100000000" name="amount" required>
           <div class="valid-feedback">
             ok！
           </div>

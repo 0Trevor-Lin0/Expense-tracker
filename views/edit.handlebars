@@ -39,14 +39,18 @@
       </div>
     </div>
     <div class="col-12">
+      <label for="merchant" class="form-label">店家：</label>
+      <input type="text" maxlength="10" class="form-control" id="merchant" placeholder="輸入店家" name="merchant" value="{{record.merchant}}">
+    </div>
+    <div class="col-12">
       <label for="amount" class="form-label">金額：</label>
-      <input type="number" class="form-control" id="amount" placeholder="輸入金額" name="amount" value="{{record.amount}}"
+      <input type="number" class="form-control" id="amount" placeholder="輸入金額" max="100000000" name="amount" value="{{record.amount}}"
         required>
       <div class="valid-feedback">
         ok！
       </div>
       <div class="invalid-feedback">
-        請輸入金額！
+        請輸入金額 or 金額過大！
       </div>
     </div>
     <div class="col-12 d-flex justify-content-between">

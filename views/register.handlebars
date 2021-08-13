@@ -4,7 +4,7 @@
     {{> message}}
     <form action="/users/register" method="POST" class="row g-3 text-start needs-validation" novalidate>
       <div class="form-floating mb-3">
-        <input type="text" class="form-control" name="name" id="floatingName" placeholder="Enter your name" value="{{name}}" maxlength="10" minlength="1" onkeyup="this.value=this.value.replace(/\s+/g,'')" required>
+        <input type="text" class="form-control" name="name" id="floatingName" placeholder="Enter your name" value="{{name}}" maxlength="10" onkeyup="this.value=this.value.replace(/\s+/g,'')" required>
         <label for="floatingName" class="form-label">User name</label>
         <div class="valid-feedback">
           Looks good!

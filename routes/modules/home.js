@@ -26,7 +26,10 @@ router.get('/', (req, res) => {
             price += record.amount
             return price
           }, 0)
-          res.render('index', { records, totalAmount, categories })
+          Record.aggregate([{ $group: { _id: '$category', total: { $sum: '$amount' } } }])
+            .then(categoryAmount =>
+              res.render('index', { records, totalAmount, categories, categoryAmount })
+            )
         })
     })
 
@@ -72,7 +75,23 @@ router.post('/filter', (req, res) => {
             price += record.amount
             return price
           }, 0)
-          res.render('index', { records, totalAmount, categories, yearMonth })
+          Record.aggregate([
+            {
+              $project: {
+                name: 1,
+                date: 1,
+                amount: 1,
+                category: 1,
+                merchant: 1,
+                categoryId: 1,
+                userId: 1,
+                yearMonth: { $dateToString: { format: '%Y-%m', date: '$date' } }
+              }
+            },
+            { $match: { categoryId, userId, yearMonth } },
+            { $group: { _id: '$category', total: { $sum: '$amount' } } }
+          ])
+            .then(categoryAmount => res.render('index', { records, totalAmount, categories, yearMonth, categoryAmount }))
         })
     })
     .catch(error => console.log(error))

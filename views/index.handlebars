@@ -1,4 +1,3 @@
-{{!-- <a href="/"></a><i class="fas fa-home text-white bg-dark rounded-circle"></i></a> --}}
 <form action="/filter" method="POST" class="my-2 row g-2">
 <div class="col-12 col-md-6">
   <label for="category" class="form-label fs-4">篩選類別</label>
@@ -15,6 +14,9 @@
 </div>
 <div class="text-end col-12">
   <button type="submit" class="btn btn-outline-primary"><i class="fas fa-search"></i>Search</button>
+  <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#chartModal">
+    <i class="fas fa-chart-pie" title="觀看圓餅圖"></i>
+  </button>
   <a href="/" class="btn btn-outline-secondary"><i class="fas fa-eraser" title="清除篩選"></i></a>
   <!-- Button trigger modal -->
   <button type="button" class="btn btn-outline-dark font-bold" data-bs-toggle="modal" data-bs-target="#createData">
@@ -62,7 +64,7 @@
 </div>
 
 
-<!-- Modal -->
+<!-- add expense Modal -->
 <div class="modal fade" id="createData" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
   aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -127,16 +129,34 @@
   </div>
 </div>
 
+<!-- Chart Modal -->
+<div class="modal fade" id="chartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Pie Chart</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <canvas id="myChart"></canvas>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  
   (function () {
     'use strict'
-
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
     const forms = document.querySelectorAll('.needs-validation')
 
-    // Loop over them and prevent submission
     Array.prototype.slice.call(forms)
       .forEach(function (form) {
         form.addEventListener('submit', function (event) {
@@ -149,4 +169,46 @@
         }, false)
       })
   })()
+  const ctx = document.getElementById('myChart');
+    const myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: [
+          "{{ categoryAmount.[0]._id}}",
+          "{{ categoryAmount.[1]._id}}",
+          "{{ categoryAmount.[2]._id}}",
+          "{{ categoryAmount.[3]._id}}",
+          "{{ categoryAmount.[4]._id}}"
+        ],
+        datasets: [{
+          label: '# of Votes',
+          data: [
+          {{ categoryAmount.[0].total }},
+          {{ categoryAmount.[1].total }},
+          {{ categoryAmount.[2].total }},
+          {{ categoryAmount.[3].total }},
+          {{ categoryAmount.[4].total }}
+          ],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+      }
+    })
+
+     
 </script>

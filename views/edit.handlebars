@@ -3,7 +3,7 @@
     class="row g-3 p-3 needs-validation w-50 mx-auto text-start" novalidate>
     <div class="col-12">
       <label for="name" class="form-label">名稱：</label>
-      <input type="text" class="form-control" id="name" name="name" placeholder="花費名稱" value="{{record.name}}"
+      <input type="text" class="form-control" id="name" name="name" placeholder="花費名稱" value="{{record.name}}" maxlength="10"
         onkeyup="this.value=this.value.replace(/\s+/g,'')" required>
       <div class="valid-feedback">
         ok！
@@ -44,13 +44,13 @@
     </div>
     <div class="col-12">
       <label for="amount" class="form-label">金額：</label>
-      <input type="number" class="form-control" id="amount" placeholder="輸入金額" max="100000000" name="amount" value="{{record.amount}}"
+      <input type="number" class="form-control" id="amount" placeholder="輸入金額" min="0" max="100000000" name="amount" value="{{record.amount}}"
         required>
       <div class="valid-feedback">
         ok！
       </div>
       <div class="invalid-feedback">
-        請輸入金額 or 金額過大！
+        請輸入金額 or 金額過大且不可為負！
       </div>
     </div>
     <div class="col-12 d-flex justify-content-between">

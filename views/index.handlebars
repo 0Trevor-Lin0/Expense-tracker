@@ -1,27 +1,29 @@
 {{!-- <a href="/"></a><i class="fas fa-home text-white bg-dark rounded-circle"></i></a> --}}
-<form action="/filter" method="POST" class="my-2 row">
-<div class="col-12 col-md-5">
+<form action="/filter" method="POST" class="my-2 row g-2">
+<div class="col-12 col-md-6">
   <label for="category" class="form-label fs-4">篩選類別</label>
   <select class="form-select w-50 mx-auto" id="category" name="categoryId">
     <option value="">Choose all...</option>
     {{#each categories}}
-    <option value="{{this._id}}" {{#if (eq this._id categoryId)}}selected{{/if}}>{{this.name}}</option>
+    <option value="{{this._id}}">{{this.name}}</option>
     {{/each}}
   </select>
 </div>
-<div class="col-12 col-md-5">
+<div class="col-12 col-md-6">
   <label for="month" class="form-label fs-4">篩選日期</label>
   <input class="form-select w-50 mx-auto" type="month" id="month" name="yearMonth">
 </div>
-<small class="col-12 col-md-2 align-items-center"><button type="submit" class="btn btn-primary">提交篩選</button></small>
-</form>
-
-<div class="text-end">
+{{!-- <small class="col-12 col-md-2 align-items-center my-auto"></small> --}}
+<div class="text-end col-12">
+  <button type="submit" class="btn btn-outline-primary"><i class="fas fa-search"></i>Search</button>
   <!-- Button trigger modal -->
   <button type="button" class="btn btn-outline-dark font-bold" data-bs-toggle="modal" data-bs-target="#createData">
     新增花費
   </button>
 </div>
+</form>
+
+
 <div class="d-flex justify-content-center">
   <div class="position-father">
     <p class="d-inline-block align-top me-5 fs-4 fw-bold">總金額:</p>
@@ -118,7 +120,7 @@
         </div>
         <div class="col-12 d-flex justify-content-between">
           <button class="btn btn-outline-dark" type="submit">新增花費</button>
-          <a href="/" type="button" class="btn btn-outline-dark">返回</a>
+          <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" aria-label="Close">返回</button>
         </div>
       </form>
     </div>

@@ -12,7 +12,7 @@ router.get('/:id', (req, res) => {
       Category.find()
         .lean()
         .then(categories => {
-          record.date = record.date.toJSON().split('T')[0]
+          record.date = record.date.toJSON().substring(0, 10)
           categories.forEach(category => {
             category.match = String(category._id) === String(record.categoryId)
           }) // 用在edit category 的option selected指定
@@ -22,15 +22,14 @@ router.get('/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// 新增消費紀錄
 router.post('/', (req, res) => {
   req.body.userId = req.user._id
   return Category.find()
     .lean()
     .then(categories => {
       categories.forEach(category => {
-        if (category.name === req.body.category) {
-          req.body.categoryId = category._id
-        }
+        if (category.name === req.body.category) req.body.categoryId = category._id
       })
       Record.create(req.body)
         .then(() => res.redirect('/'))
@@ -38,6 +37,7 @@ router.post('/', (req, res) => {
     })
 })
 
+// 修改消費紀錄
 router.put('/:id', (req, res) => {
   const userId = req.user._id
   const _id = req.params.id
@@ -45,9 +45,7 @@ router.put('/:id', (req, res) => {
     .lean()
     .then(categories => {
       categories.forEach(category => {
-        if (category.name === req.body.category) {
-          req.body.categoryId = category._id
-        }
+        if (category.name === req.body.category) req.body.categoryId = category._id
       })
       Record.findOne({ _id, userId })
         .then(record => {

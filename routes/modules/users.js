@@ -64,7 +64,7 @@ router.post('/register', (req, res) => {
 router.get('/logout', (req, res) => {
   req.logout()
   req.flash('successMsg', '你已經成功登出。')
-  res.redirect('login') // 使用render會使的在登出後isAuthenticated仍為true，因為沒在讓登出後的狀態在跑一次路由
+  res.redirect('login') // 使用render會使得在登出後isAuthenticated仍為true，因為沒在讓登出後的狀態在跑一次路由
 })
 
 module.exports = router

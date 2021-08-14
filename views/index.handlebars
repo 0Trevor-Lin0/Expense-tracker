@@ -5,17 +5,17 @@
   <select class="form-select w-50 mx-auto" id="category" name="categoryId">
     <option value="">Choose all...</option>
     {{#each categories}}
-    <option value="{{this._id}}">{{this.name}}</option>
+    <option value="{{this._id}}" {{#if this.selected}}selected{{/if}}>{{this.name}}</option>
     {{/each}}
   </select>
 </div>
 <div class="col-12 col-md-6">
   <label for="month" class="form-label fs-4">篩選日期</label>
-  <input class="form-select w-50 mx-auto" type="month" id="month" name="yearMonth">
+  <input class="form-select w-50 mx-auto" type="month" id="month" name="yearMonth" value="{{yearMonth}}">
 </div>
-{{!-- <small class="col-12 col-md-2 align-items-center my-auto"></small> --}}
 <div class="text-end col-12">
   <button type="submit" class="btn btn-outline-primary"><i class="fas fa-search"></i>Search</button>
+  <a href="/" class="btn btn-outline-secondary"><i class="fas fa-eraser" title="清除篩選"></i></a>
   <!-- Button trigger modal -->
   <button type="button" class="btn btn-outline-dark font-bold" data-bs-toggle="modal" data-bs-target="#createData">
     新增花費

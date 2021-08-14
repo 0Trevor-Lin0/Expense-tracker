@@ -1,9 +1,10 @@
-const bcrypt = require('bcryptjs')
 // 使得mongoose能取得.env的path
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
-const db = require('../../config/mongoose') // 建立種子前要取得資料庫連線
+const bcrypt = require('bcryptjs')
+// 建立種子前要取得資料庫連線
+const db = require('../../config/mongoose')
 // 取得Schema
 const Record = require('../record')
 const Category = require('../category')

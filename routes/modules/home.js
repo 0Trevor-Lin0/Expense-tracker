@@ -58,19 +58,21 @@ router.post('/filter', (req, res) => {
       Category.find()
         .lean()
         .then(categories => {
-          records.forEach(record => {
-            categories.forEach(category => {
+          categories.forEach(category => {
+            records.filter(record => {
               if (String(record.categoryId) === String(category._id)) {
                 record.icon = category.icon
+                // 改變取出date呈現方式
+                record.date = record.date.toDateString()
               }
             })
-            record.date = record.date.toDateString() // 改變取出date呈現方式
+            if (String(categoryId) === String(category._id)) category.selected = true
           })
           const totalAmount = records.reduce((price, record) => {
             price += record.amount
             return price
           }, 0)
-          res.render('index', { records, totalAmount, categories, categoryId })
+          res.render('index', { records, totalAmount, categories, yearMonth })
         })
     })
     .catch(error => console.log(error))

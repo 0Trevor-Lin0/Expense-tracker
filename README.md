@@ -4,6 +4,8 @@
 
 ### :link: heroku 連結
 
+https://my0-expense0-tracker0.herokuapp.com/
+
 ## Features
 
 - 使用者須註冊才能使用本產品
@@ -53,7 +55,9 @@ $ npm run dev
 ```
 
 6. default user
+   <br />
    <font  size=2>Email: user1@example.com</font>
+   <br />
    <font  size=2>password: 12345678</font>
 
 ## :toolbox: Built With

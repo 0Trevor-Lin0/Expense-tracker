@@ -14,6 +14,7 @@
 </div>
 <div class="text-end col-12">
   <button type="submit" class="btn btn-outline-primary"><i class="fas fa-search"></i>Search</button>
+  <!-- Button trigger modal -->
   <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#chartModal">
     <i class="fas fa-chart-pie" title="觀看圓餅圖"></i>
   </button>
@@ -65,92 +66,13 @@
 
 
 <!-- add expense Modal -->
-<div class="modal fade" id="createData" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-  aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content p-3">
-      <form action="/records" method="POST" class="row g-3 needs-validation text-start" novalidate>
-        <div class="col-12">
-          <label for="name" class="form-label">名稱：</label>
-          <input type="text" class="form-control" id="name" name="name" placeholder="花費名稱" maxlength="10"
-            onkeyup="this.value=this.value.replace(/\s+/g,'')" required autofocus>
-          <div class="valid-feedback">
-            ok！
-          </div>
-          <div class="invalid-feedback">
-            請為這必花費取個名子！
-          </div>
-        </div>
-        <div class="col-12">
-          <label for="date" class="form-label">日期：</label>
-          <input type="date" class="form-control" id="date" name="date" required>
-          <div class="valid-feedback">
-            ok!
-          </div>
-          <div class="invalid-feedback">
-            請選擇花費的日期！
-          </div>
-        </div>
-        <div class="col-12">
-          <label for="category" class="form-label">類別：</label>
-          <select class="form-select" id="category" name="category" required>
-            <option selected disabled value="">Choose...</option>
-            {{#each categories}}
-            <option value="{{this.name}}">{{this.name}}</option>
-            {{/each}}
-          </select>
-          <div class="valid-feedback">
-            ok!
-          </div>
-          <div class="invalid-feedback">
-            請選擇一個類別！
-          </div>
-        </div>
-        <div class="col-12">
-          <label for="merchant" class="form-label">店家：</label>
-          <input type="text" maxlength="10" class="form-control" id="merchant" placeholder="輸入店家" name="merchant">
-        </div>
-        <div class="col-12">
-          <label for="amount" class="form-label">金額：</label>
-          <input type="number" class="form-control" id="amount" placeholder="輸入金額" min="0" max="100000000" name="amount" required>
-          <div class="valid-feedback">
-            ok！
-          </div>
-          <div class="invalid-feedback">
-            請輸入金額 or 金額過大且不可為負！
-          </div>
-        </div>
-        <div class="col-12 d-flex justify-content-between">
-          <button class="btn btn-outline-dark" type="submit">新增花費</button>
-          <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" aria-label="Close">返回</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
+{{>addExpenseModal}}
 
 <!-- Chart Modal -->
-<div class="modal fade" id="chartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Pie Chart</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div>
-          <canvas id="myChart"></canvas>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
+{{> chartModal}}
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
   
   (function () {
@@ -169,8 +91,9 @@
         }, false)
       })
   })()
+  
   const ctx = document.getElementById('myChart');
-    const myChart = new Chart(ctx, {
+  const myChart = new Chart(ctx, {
       type: 'doughnut',
       data: {
         labels: [
@@ -208,7 +131,6 @@
           borderWidth: 1
         }]
       }
-    })
+    })  
 
-     
 </script>

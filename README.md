@@ -1,6 +1,6 @@
 # :memo: Expense-tracker
 
-此專案提供使用者可以記錄消費金額、日期並分類它們。
+此專案提供使用者可以記錄消費金額、日期等並透過篩選與圖表來觀察自己的消費狀況。
 
 ### :link: heroku 連結
 
@@ -13,12 +13,14 @@
 - 使用者可以點擊'刪除'，來刪除此筆消費紀錄
 - 使用者可以點擊每筆消費紀錄畫面，來進入修改模式
 - 使用者可以點擊日期、分類篩選，透過篩選鈕來進行個別或多重篩選
+- 使用者可以點擊 pie chart 圖式，來觀看圖表
 - 使用者可以點擊橡皮擦圖式，來清除篩選選項
 - 使用者可以點擊導覽列標題，來回到首頁
 
 ## Home page
 
 ![image](/public/img/Expense-tracker-host.png)
+![image](/public/img/Expense-tracker-pieChart.png)
 ![image](/public/img/Expense-tracker-login.png)
 
 ## Let's Start
